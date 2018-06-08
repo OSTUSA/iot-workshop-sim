@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 
 namespace SimService
@@ -15,7 +16,8 @@ namespace SimService
 
         public ConfigService()
         {
-            using ( StreamReader file = File.OpenText( @"deviceConfig.json" ) )
+            var deviceConfigPath = ConfigurationManager.AppSettings["DeviceConfigPath"];
+            using ( StreamReader file = File.OpenText( deviceConfigPath ) )
             {
                 using ( JsonTextReader reader = new JsonTextReader( file ) )
                 {
