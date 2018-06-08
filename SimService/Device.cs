@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
+using System;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,10 +14,12 @@ namespace SimService
     class Device : IDevice
     {
         private readonly string _deviceId;
+        private readonly Random _rnd;
         private DeviceClient _deviceClient;
 
         public Device( string deviceId, string iotHubUri, string deviceKey )
         {
+            _rnd = new Random();
             _deviceId = deviceId;
             Connect( iotHubUri, deviceKey );
         }
@@ -29,10 +32,16 @@ namespace SimService
                 TransportType.Mqtt );
         }
 
+        private double GetRandomValue( int lower, int upper, int places = 0 )
+        {
+            var randomVal = _rnd.NextDouble() * (upper - lower) + lower;
+            return Math.Round( randomVal, places );
+        }
+
         public async Task TickAsync()
         {
-            var temperature = 0.0;
-            var humidity = 0.0;
+            var temperature = GetRandomValue( 60, 90, 2 );
+            var humidity = GetRandomValue( 30, 35, 2 );
             var telemetryDataPoint = new
             {
                 deviceId = _deviceId,
