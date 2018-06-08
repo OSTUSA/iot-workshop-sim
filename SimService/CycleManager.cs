@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -13,7 +14,8 @@ namespace SimService
         {
             _deviceManager = new DeviceManager( configService );
 
-            _timer = new Timer( 1000 ) { AutoReset = false };
+            var interval = ConfigurationManager.AppSettings["MessageIntervalMilliseconds"];
+            _timer = new Timer( Int32.Parse( interval ) ) { AutoReset = false };
             _timer.Elapsed += TickHandler;
         }
 

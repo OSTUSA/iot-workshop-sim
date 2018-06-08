@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace SimService
 {
-    interface IDevice {
+    interface IDevice
+    {
         Task TickAsync();
     }
 
@@ -39,8 +40,8 @@ namespace SimService
                 humidity
             };
 
-            string messageString = JsonConvert.SerializeObject( telemetryDataPoint );
-            Message message = new Message( Encoding.ASCII.GetBytes( messageString ) );
+            var messageString = JsonConvert.SerializeObject( telemetryDataPoint );
+            var message = new Message( Encoding.ASCII.GetBytes( messageString ) );
 
             await _deviceClient.SendEventAsync( message );
         }
