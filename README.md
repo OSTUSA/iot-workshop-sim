@@ -2,7 +2,7 @@
 
 Generate simulated telemetry against an Azure IoT Hub, for assistance developing Streaming Analytics jobs, and Power BI dashboards.
 
-Uses the (TopShelf)[http://topshelf-project.com/] library for generating either a command-line app, or a Windows Service.
+Uses the [TopShelf](http://topshelf-project.com/) library for generating either a command-line app, or a Windows Service.
 
 ## Notes
 
