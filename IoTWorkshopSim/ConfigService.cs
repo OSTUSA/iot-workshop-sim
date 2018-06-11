@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 
-namespace SimService
+namespace IoTWorkshopSim
 {
     public interface IConfigService
     {

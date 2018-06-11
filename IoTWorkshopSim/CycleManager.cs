@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace SimService
+namespace IoTWorkshopSim
 {
     public class CycleManager
     {
